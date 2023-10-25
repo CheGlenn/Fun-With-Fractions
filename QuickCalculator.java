@@ -20,14 +20,16 @@ public class QuickCalculator{
     for(int i = 0; i < args.length; i++){ //loop through args
       String temp = args[i]; //temp value to store arg at index i
 
-      if(temp.substring(0,5).equals("STORE")){ //check if STORE command
-        pen.println(args[i]);
-        calc.store((temp.substring(6,7)).charAt(0)); //run store
-      }
-      else{
-        BigFraction result = calc.evaluate(temp); //run evaluate
-        pen.println(args[i]);
-        pen.println(result.simplify());
+      if(temp.length() > 1){ //checks if temp val length is greater than 1
+        if(temp.substring(0,5).equals("STORE")){ //check if STORE command
+          calc.store((temp.substring(6,7)).charAt(0)); //run store
+        }
+        else{
+          BigFraction result = calc.evaluate(temp); //run evaluate
+          pen.println(result.simplify());
+        }
+      } else{
+        pen.println(args[i]); //prints input if temp val length is less than 1
       }
       
     }

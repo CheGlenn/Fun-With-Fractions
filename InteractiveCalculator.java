@@ -1,39 +1,32 @@
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-/**
-
- * InteractiveCalculator takes in arguments line by line in the terminal to calculate BigFraction values, following the form
- * BigFraction (operation) BigFraction
- * STORE a
- * a (operation) BigFraction
- *
- *  Samuel A. Rebelsky.
- * @author Che
- * @version Sep 2023 Mini Proj 2: Fun With Fractions
- */
-
-
 public class InteractiveCalculator {
   public static void main(String args[]){
     PrintWriter pen = new PrintWriter(System.out, true);
 
     BFCalculator calc = new BFCalculator();
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in); 
     String input = scanner.nextLine();
     //scanner from StackOverflow https://stackoverflow.com/questions/59636888/correct-way-to-continuously-read-messages-from-the-console-and-do-other-things
 
-    while (! input.equals("QUIT")){ //checks if input is QUIT, exits terminal if so
+    while (! input.equals("QUIT")){ //checks if input is quit
   
-      if (input.substring(0,5).equals("STORE")){  //checks if input is STORE and calls store in BFCalc
-        calc.store((input.substring(6,7)).charAt(0));
+      if(input.length() > 1){ //check if input is single number,char,fraction
+        if (input.substring(0,5).equals("STORE")){ //checks input for STORE as first word
+          calc.store((input.substring(6,7)).charAt(0)); //runs store with letter user put after store
+          input = scanner.nextLine();
+        } //if
+        else{
+        pen.println(calc.evaluate(input)); //if user did not use STORE, runs evaluate with user input
         input = scanner.nextLine();
-      } //if
-      else{ //calls evaluate with input
-      pen.println(calc.evaluate(input));
-      input = scanner.nextLine();
-      } //else
+        } //else
+      } //if 
+      else{
+        pen.println(input);
+        break;
+      }
     } //while
     scanner.close();
   }

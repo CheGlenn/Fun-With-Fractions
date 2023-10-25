@@ -1,16 +1,5 @@
 import java.math.BigInteger;
 
-
-
-/**
-
- * BigFraction class uses BigInteger to create fractions
- *
- *  Samuel A. Rebelsky.
- * @author Che
- * @version Sep 2023 Mini Proj 2: Fun With Fractions
- */
-
 public class BigFraction {
   
   BigInteger num;
@@ -19,6 +8,10 @@ public class BigFraction {
 
   //CONSTRUCTORS
 
+  /*
+   * Build a new BigFraction from 1 BigInteger
+   *
+   */
   public BigFraction(BigInteger num){
     this.num = num;
     this.denom = BigInteger.valueOf(1);
@@ -51,9 +44,14 @@ public class BigFraction {
   public BigFraction(String str){
     String sep[] = str.split("/");
     this.num = BigInteger.valueOf(Integer.parseInt(sep[0]));
-    this.denom = BigInteger.valueOf(Integer.parseInt(sep[1]));
+    if(sep.length > 1){ //checks for denom by checking length of string 
+    this.denom = BigInteger.valueOf(Integer.parseInt(sep[1])); 
+    } else{
+    this.denom = BigInteger.valueOf(1); //if no denom inputted, sets denom to 1
+    }
 
   }
+
 
   //METHODS
 
@@ -148,5 +146,8 @@ public class BigFraction {
     // return this.num.toString().concat("/").concat(this.denom.toString());
     return this.num + "/" + this.denom;
   }// toString()
+
+
+
 }
 

@@ -30,11 +30,10 @@ public class BFCalculator{
 
     String[] input = exp.split(" "); //split string by spaces into an array
 
-    for(int i = 0; i < input.length; i++){ //lopp through array to check for any characters
+    for(int i = 0; i < input.length; i++){ //loop through array to check for any characters
       String temp = input[i];
       if ((temp.codePointAt(0) > 96) && (temp.codePointAt(0) < 123)) { //kevin pointed me to the codePointAt function, and explained how it works
-          input[i] = registry[(temp.codePointAt(0)) - base].toString();  //set letter input to corresponding registry 
-
+          input[i] = registry[(temp.codePointAt(0)) - base].toString();  //set letter input to corresponding registry
       } //if
     } //for
 
